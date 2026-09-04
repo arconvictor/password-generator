@@ -1,0 +1,13 @@
+services:
+  vault:
+    image: hashicorp/vault:1.16.1
+    environment:
+       - VAULT_DEV_ROOT_TOKEN_ID=VAULT_TOKEN
+       - VAULT_TOKEN=VAULT_TOKEN
+
+  db:
+    image: gvenzl/oracle-xe:21-slim-faststart
+    volumes:
+      - ./src/test/resources/db/dba_users:/container-entrypoint-initdb.d
+    environment:
+      - ORACLE_PASSWORD=password
